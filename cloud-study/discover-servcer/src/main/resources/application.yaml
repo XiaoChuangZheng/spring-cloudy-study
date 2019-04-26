@@ -1,0 +1,6 @@
+eureka:
+  client:
+    eureka-server-port: 8100
+    enabled: false
+    fetch-registry: false
+    
