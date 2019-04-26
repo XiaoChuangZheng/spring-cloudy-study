@@ -13,3 +13,5 @@ eureka:
 spring:
   application:
     name: enreka-server
+server:
+  port: 8000
