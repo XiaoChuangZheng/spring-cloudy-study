@@ -6,7 +6,7 @@ spring:
       label: develop
       profile: dev
       uri: http://localhost:8200
+
 server:
   port: 8201
-
 
