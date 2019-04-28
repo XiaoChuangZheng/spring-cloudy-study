@@ -2,9 +2,3 @@ service:
   one:
     config:
       message: service one config message
-
-#eureka:
-#  client:
-#    service-url:
-#      defaultzone: http://localhost:8000/eureka/
-#    register-with-eureka: true
