@@ -5,7 +5,9 @@ spring:
     config:
       label: develop
       profile: dev
-      uri: http://localhost:8200
+      discovery:
+        enabled: true
+        service-id: config-server
 
 eureka:
   client:
