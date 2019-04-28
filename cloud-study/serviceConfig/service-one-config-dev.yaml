@@ -1,0 +1,4 @@
+service:
+  one:
+    config:
+      message: service one config message
