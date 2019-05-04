@@ -1,11 +1,16 @@
 package com.zxc.swaggerservice.rest;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * <p>功能描述,该部分必须以中文句号结尾。</p>
@@ -16,12 +21,16 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @Api(value = "测试rest接口类")
-@RequestMapping(path = "/test")
+@RequestMapping(path = "/test/{id}")
 public class TestRest {
     @ApiOperation(value = "测试rest接口")
     @RequestMapping(method = RequestMethod.GET)
-    public String testRest() {
-        String s = "this is test service";
+    @ApiImplicitParams(
+        @ApiImplicitParam(name = "Authorization", value = "认证令牌", required = true, dataType = "String", paramType = "header")
+    )
+    public String testRest(@PathVariable(value = "id", required = true) @ApiParam(value = "测试id", required = true) String id,
+                           @RequestParam(value = "测试名称", required = true) @ApiParam(value = "name", required = true) String name) {
+        String s = id + "this is test service" + name;
         return s;
     }
 }
