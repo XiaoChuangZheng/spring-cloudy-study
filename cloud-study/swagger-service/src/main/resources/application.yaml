@@ -1,0 +1,13 @@
+
+server.port: 8002
+
+spring.application.name: swagger service
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    status-page-url-path: /swagger-ui.html
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
