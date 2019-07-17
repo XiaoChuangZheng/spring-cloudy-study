@@ -1,10 +1,11 @@
 spring:
   application:
-    name: config-server
+    name: CONFIG-SERVER
   cloud:
     config:
       server:
         git:
+          #配置文件放在github的一个文件夹中
           uri: https://github.com/XiaoChuangZheng/spring-cloudy-study
           search-paths: cloud-study/serviceConfig
 server:
@@ -12,5 +13,16 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8000/eureka/
+      defaultZone: http://192.168.40.100:8000/eureka/,http://192.168.40.101:8000/eureka/,http://192.168.40.102:8000/eureka/
+      #开启健康检查
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+    ip-address: localhost
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    # 告诉服务端，如果我2s之内没有给你发心跳，就代表我“死”了，将我踢出掉。
+    lease-expiration-duration-in-seconds: 10
+    #每间隔10s，向服务端发送一次心跳，证明自己依然”存活“
+    lease-renewal-interval-in-seconds: 10
 

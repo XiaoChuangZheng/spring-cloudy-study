@@ -1,19 +1,25 @@
 eureka:
   server:
-    renewal-percent-threshold: 0.49
-  instance:
-    hostname: localhost
+    #关闭自我保护机制
+    enable-self-preservation: false
+    #每30秒清理一次不健康的服务
+    eviction-interval-timer-in-ms: 30000
   client:
+    #服务端口
     eureka-server-port: 8100
+    #eureka.client.fetchRegistry=true，它会在本地缓存所有实例注册信息。为了保证缓存数据的有效性，
+    #它会定时（值由eureka.client.registry-fetch-interval-seconds定义，默认值为30s）向注册中心更新实例。
 #    enabled: false
-    fetch-registry: false
+    fetch-registry: true
+    registry-fetch-interval-seconds: 30
+    #是否注册eureka，改服务是一个server 所以不需要
     register-with-eureka: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://192.168.40.100:8000/eureka/,http://192.168.40.101:8000/eureka/,http://192.168.40.102:8000/eureka/
 
-
+#服务名称
 spring:
   application:
-    name: enreka-server
+    name: EUREKA-SERVER
 server:
   port: 8000
