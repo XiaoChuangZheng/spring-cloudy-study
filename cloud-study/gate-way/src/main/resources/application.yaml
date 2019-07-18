@@ -1,0 +1,27 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+    # 告诉服务端，如果我2s之内没有给你发心跳，就代表我“死”了，将我踢出掉。
+    lease-expiration-duration-in-seconds: 10
+    #每间隔10s，向服务端发送一次心跳，证明自己依然”存活“
+    lease-renewal-interval-in-seconds: 10
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8000/eureka/,http://192.168.40.100:8000/eureka/,http://192.168.40.101:8000/eureka/,http://192.168.40.102:8000/eureka/
+server:
+  port: 8301
+spring:
+  application:
+    name: GATE-WAY
+  cloud:
+    gateway:
+      routes:
+        - id: SERVICE-ONE-ROUTE
+#      - id: SERVICE-ONE-ROUTE
+#        uri: http://baidu.com
+        #
+          uri: lb://SERVICE-ONE-CONFIG
+          predicates:
+            - Path=/service-one,/service-two

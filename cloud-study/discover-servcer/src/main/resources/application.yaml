@@ -15,7 +15,7 @@ eureka:
     #是否注册eureka，改服务是一个server 所以不需要
     register-with-eureka: false
     service-url:
-      defaultZone: http://192.168.40.100:8000/eureka/,http://192.168.40.101:8000/eureka/,http://192.168.40.102:8000/eureka/
+      defaultZone: http://localhost:8000/eureka/,http://192.168.40.100:8000/eureka/,http://192.168.40.101:8000/eureka/,http://192.168.40.102:8000/eureka/
 
 #服务名称
 spring:
